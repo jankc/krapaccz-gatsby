@@ -1,6 +1,5 @@
 ---
 title: 'Sunflower Caravan'
-path: 'sunflower_caravan'
 featuredPhoto: 'sunflower_caravan.jpg'
 order: 70
 ---

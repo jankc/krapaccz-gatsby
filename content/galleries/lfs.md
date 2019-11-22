@@ -1,6 +1,5 @@
 ---
 title: 'Hvězdy LFŠ'
-path: 'lfs'
 featuredPhoto: 'lfs.jpg'
 order: 60
 ---

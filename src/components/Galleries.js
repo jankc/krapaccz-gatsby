@@ -8,6 +8,9 @@ export default () => {
       allMarkdownRemark(sort: { fields: frontmatter___order }) {
         edges {
           node {
+            fields {
+              slug
+            }
             frontmatter {
               title
               featuredPhoto {
@@ -17,24 +20,23 @@ export default () => {
                   }
                 }
               }
-              path
             }
           }
         }
       }
     }
   `);
-  const gals = data.allMarkdownRemark.edges.map((edge, i) => (
+  const gals = data.allMarkdownRemark.edges.map(({ node }, i) => (
     <article className="6u 12u$(xsmall) work-item" key={i}>
-      <Link className="image fit thumb">
+      <Link className="image fit thumb" to={node.fields.slug}>
         <Img
           fluid={{
-            ...edge.node.frontmatter.featuredPhoto.childImageSharp.fluid,
+            ...node.frontmatter.featuredPhoto.childImageSharp.fluid,
             aspectRatio: 1.5,
           }}
         />
       </Link>
-      <h3>{edge.node.frontmatter.title}</h3>
+      <h3>{node.frontmatter.title}</h3>
     </article>
   ));
   return <div className="row">{gals}</div>;
