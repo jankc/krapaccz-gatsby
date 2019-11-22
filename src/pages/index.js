@@ -1,26 +1,26 @@
-import React from 'react'
-import Helmet from 'react-helmet'
+import React from 'react';
+import Helmet from 'react-helmet';
 
-import { graphql } from 'gatsby'
+import { graphql } from 'gatsby';
 
-import Layout from '../components/layout'
+import Layout from '../components/layout';
 // import Lightbox from 'react-images'
-import Gallery from '../components/Gallery'
-import Galleries from '../components/Galleries'
+import Gallery from '../components/Gallery';
+import Galleries from '../components/Galleries';
 
-import thumb01 from '../assets/images/thumbs/01.jpg'
-import thumb02 from '../assets/images/thumbs/02.jpg'
-import thumb03 from '../assets/images/thumbs/03.jpg'
-import thumb04 from '../assets/images/thumbs/04.jpg'
-import thumb05 from '../assets/images/thumbs/05.jpg'
-import thumb06 from '../assets/images/thumbs/06.jpg'
+import thumb01 from '../assets/images/thumbs/01.jpg';
+import thumb02 from '../assets/images/thumbs/02.jpg';
+import thumb03 from '../assets/images/thumbs/03.jpg';
+import thumb04 from '../assets/images/thumbs/04.jpg';
+import thumb05 from '../assets/images/thumbs/05.jpg';
+import thumb06 from '../assets/images/thumbs/06.jpg';
 
-import full01 from '../assets/images/fulls/01.jpg'
-import full02 from '../assets/images/fulls/02.jpg'
-import full03 from '../assets/images/fulls/03.jpg'
-import full04 from '../assets/images/fulls/04.jpg'
-import full05 from '../assets/images/fulls/05.jpg'
-import full06 from '../assets/images/fulls/06.jpg'
+import full01 from '../assets/images/fulls/01.jpg';
+import full02 from '../assets/images/fulls/02.jpg';
+import full03 from '../assets/images/fulls/03.jpg';
+import full04 from '../assets/images/fulls/04.jpg';
+import full05 from '../assets/images/fulls/05.jpg';
+import full06 from '../assets/images/fulls/06.jpg';
 
 const DEFAULT_IMAGES = [
   {
@@ -65,7 +65,7 @@ const DEFAULT_IMAGES = [
     caption: 'Photo 6',
     description: 'Lorem ipsum dolor sit amet nisl sed nullam feugiat.',
   },
-]
+];
 
 export default ({ data }) => (
   <Layout>
@@ -104,27 +104,7 @@ export default ({ data }) => (
         <h2>Recent Work</h2>
 
         <Galleries></Galleries>
-
-        <Gallery
-          images={DEFAULT_IMAGES.map(
-            ({ id, source, thumbnail, caption, description }) => ({
-              source,
-              thumbnail,
-              caption,
-              description,
-            })
-          )}
-        />
-
-        <ul className="actions">
-          <li>
-            <a href="#" className="button">
-              Full Portfolio
-            </a>
-          </li>
-        </ul>
       </section>
-
       <section id="three">
         <h2>Get In Touch</h2>
         <p>
@@ -193,7 +173,7 @@ export default ({ data }) => (
       </section>
     </div>
   </Layout>
-)
+);
 
 export const query = graphql`
   query {
@@ -203,4 +183,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;
