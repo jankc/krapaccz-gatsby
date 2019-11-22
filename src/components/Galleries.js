@@ -15,7 +15,7 @@ export default () => {
               title
               featuredPhoto {
                 childImageSharp {
-                  fluid(maxWidth: 370) {
+                  fluid(maxWidth: 700) {
                     ...GatsbyImageSharpFluid
                   }
                 }
