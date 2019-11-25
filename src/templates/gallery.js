@@ -9,16 +9,17 @@ export default ({ data }) => {
   const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const toggleLightbox = selectIndex => {
-    setLightboxIsOpen(!lightboxIsOpen);
-    setSelectedIndex(selectIndex);
-  };
-
   const galleryMd = data.markdownRemark;
   const images = data.images.edges;
   const carouselSrc = images.map(({ node }) => ({
     src: node.childImageSharp.fluid.src,
   }));
+
+  const toggleLightbox = selectIndex => {
+    setLightboxIsOpen(!lightboxIsOpen);
+    setSelectedIndex(selectIndex);
+  };
+
   return (
     <Layout>
       <div id="main">
@@ -72,12 +73,6 @@ export const query = graphql`
     ) {
       edges {
         node {
-          internal {
-            type
-          }
-          relativeDirectory
-          relativePath
-          name
           childImageSharp {
             fluid(maxWidth: 700) {
               ...GatsbyImageSharpFluid
