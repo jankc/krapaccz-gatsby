@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import Masonry from 'react-masonry-css';
+import Carousel, { Modal, ModalGateway } from 'react-images';
 
 import Layout from '../components/layout';
 export default ({ data }) => {
+  const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const toggleLightbox = selectIndex => {
+    setLightboxIsOpen(!lightboxIsOpen);
+    setSelectedIndex(selectIndex);
+  };
+
   const galleryMd = data.markdownRemark;
-  const galleryImages = data.images;
+  const images = data.images.edges;
+  const carouselSrc = images.map(({ node }) => ({
+    src: node.childImageSharp.fluid.src,
+  }));
   return (
     <Layout>
       <div id="main">
@@ -19,18 +31,28 @@ export default ({ data }) => {
               className="my-masonry-grid"
               columnClassName="my-masonry-grid_column"
             >
-              {galleryImages &&
-                galleryImages.edges.map(({ node }) => (
-                  <div>
-                    <a className="image fit thumb">
+              {images &&
+                images.map(({ node }, i) => (
+                  <div key={i}>
+                    <a
+                      className="image fit thumb"
+                      onClick={e => toggleLightbox(i)}
+                    >
                       <Img fluid={node.childImageSharp.fluid} />
                     </a>
-                    {/* {node.name} */}
+                    {/* {node.childImageSharp.fluid.src} */}
                   </div>
                 ))}
             </Masonry>
           </div>
         </section>
+        <ModalGateway>
+          {lightboxIsOpen && (
+            <Modal onClose={toggleLightbox}>
+              <Carousel currentIndex={selectedIndex} views={carouselSrc} />
+            </Modal>
+          )}
+        </ModalGateway>
       </div>
     </Layout>
   );
