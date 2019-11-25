@@ -46,7 +46,7 @@
   )
 );
 
-$size-header-width: 35%;
+$size-header-width: 30%;
 $size-header-pad: 4em;
 
 /* Basic */
@@ -963,10 +963,11 @@ input[type='button'],
   @include vendor('flex-direction', 'column');
   @include vendor('align-items', 'flex-end');
   @include vendor('justify-content', 'space-between');
-  background-color: _palette(accent2, bg);
+  // background-color: _palette(accent2, bg);
+  background-color: #000;
   background-attachment: scroll, fixed;
   background-image: url('images/overlay.png'), url('../images/bg.jpg');
-  background-position: top left, top left;
+  background-position: left top, -200px top;
   background-repeat: repeat, no-repeat;
   background-size: auto, auto 100%;
   color: _palette(accent2, fg);
@@ -1003,7 +1004,7 @@ input[type='button'],
 
   h1 {
     color: _palette(accent2, fg);
-    font-size: 1.35em;
+    font-size: 3em;
     line-height: 1.75em;
     margin: 0;
   }
