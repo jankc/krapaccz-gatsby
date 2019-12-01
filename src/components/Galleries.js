@@ -36,7 +36,7 @@ export default () => {
           }}
         />
       </Link>
-      <h3>{node.frontmatter.title}</h3>
+      <h2>{node.frontmatter.title}</h2>
     </article>
   ));
   return <div className="row">{gals}</div>;

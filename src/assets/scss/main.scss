@@ -47,7 +47,7 @@
 );
 
 $size-header-width: 30%;
-$size-header-pad: 4em;
+$size-header-pad: 2em;
 
 /* Basic */
 
@@ -967,7 +967,7 @@ input[type='button'],
   background-color: #000;
   background-attachment: scroll, fixed;
   background-image: url('images/overlay.png'), url('../images/pampelisky.jpeg');
-  background-position: left top, -200px top;
+  background-position: left top, left top;
   background-repeat: repeat, no-repeat;
   background-size: auto, auto 100%;
   color: _palette(accent2, fg);
@@ -987,9 +987,9 @@ input[type='button'],
   > .inner {
     @include vendor('flex-grow', '1');
     margin: 0 0 ($size-header-pad * 0.5) 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
     }
 
   strong,
@@ -1076,10 +1076,14 @@ input[type='button'],
       padding-top: 0;
     }
 
-    > .heading {
+    > h1 {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
+
+      .back {
+        // font-size: .5em !important;
+      }
     }
   }
 
@@ -1295,7 +1299,7 @@ body.is-touch {
     width: $size-header-width;
 
     h1 {
-      font-size: 1.25em;
+      font-size: 2.6em;
 
       br {
         display: none;
@@ -1362,7 +1366,7 @@ body.is-touch {
 
   #header {
     background-attachment: scroll;
-    background-position: top left, center center;
+    background-position: left top, left top;
     background-size: auto, cover;
     left: auto;
     padding: ($size-header-pad * 1.5) $size-header-pad;
@@ -1373,7 +1377,7 @@ body.is-touch {
     display: block;
 
     h1 {
-      font-size: 1.75em;
+      font-size: 4em;
 
       br {
         display: inline;
@@ -1426,7 +1430,7 @@ body.is-touch {
   /* Basic */
 
   h1 {
-    font-size: 1.5em;
+    font-size: 2em;
   }
 
   h2 {
@@ -1474,7 +1478,7 @@ body.is-touch {
     padding: ($size-header-pad * 1.5) $size-header-pad;
 
     h1 {
-      font-size: 1.35em;
+      font-size: 2.3em;
     }
   }
 
@@ -1561,6 +1565,7 @@ body.is-touch {
     padding: ($size-header-pad * 3) $size-header-pad;
 
     h1 {
+      font-size: 2em;
       br {
         display: none;
       }
