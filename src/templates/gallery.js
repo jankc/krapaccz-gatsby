@@ -24,10 +24,7 @@ export default ({ data }) => {
     <Layout>
       <div id="main">
         <section id="one">
-          <div className="heading">
-            <h1>{galleryMd.frontmatter.title}</h1>
-            <h1><Link to="/"><i class="fa fa-arrow-left" aria-hidden="true"></i></Link></h1>
-          </div>
+          <h1><Link to="/"><i className="back fa fa-long-arrow-left" aria-hidden="true"></i></Link><span>{galleryMd.frontmatter.title}</span></h1>
           <div dangerouslySetInnerHTML={{ __html: galleryMd.html }} />
           <Masonry
             breakpointCols={2}
@@ -46,6 +43,8 @@ export default ({ data }) => {
                 </div>
               ))}
           </Masonry>
+          <h1><Link to="/"><i className="back fa fa-long-arrow-left" aria-hidden="true"></i></Link></h1>
+
         </section>
         <ModalGateway>
           {lightboxIsOpen && (
@@ -75,7 +74,7 @@ export const query = graphql`
         node {
           childImageSharp {
             fluid(maxWidth: 700) {
-              ...GatsbyImageSharpFluid,
+              ...GatsbyImageSharpFluid
               originalImg
             }
           }
