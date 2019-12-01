@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import Masonry from 'react-masonry-css';
 import Carousel, { Modal, ModalGateway } from 'react-images';
 
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 export default ({ data }) => {
   const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -12,7 +12,7 @@ export default ({ data }) => {
   const galleryMd = data.markdownRemark;
   const images = data.images.edges;
   const carouselSrc = images.map(({ node }) => ({
-    src: node.childImageSharp.fluid.src,
+    src: node.childImageSharp.fluid.originalImg,
   }));
 
   const toggleLightbox = selectIndex => {
@@ -24,28 +24,28 @@ export default ({ data }) => {
     <Layout>
       <div id="main">
         <section id="one">
-          <div>
+          <div className="heading">
             <h1>{galleryMd.frontmatter.title}</h1>
-            <div dangerouslySetInnerHTML={{ __html: galleryMd.html }} />
-            <Masonry
-              breakpointCols={2}
-              className="my-masonry-grid"
-              columnClassName="my-masonry-grid_column"
-            >
-              {images &&
-                images.map(({ node }, i) => (
-                  <div key={i}>
-                    <a
-                      className="image fit thumb"
-                      onClick={e => toggleLightbox(i)}
-                    >
-                      <Img fluid={node.childImageSharp.fluid} />
-                    </a>
-                    {/* {node.childImageSharp.fluid.src} */}
-                  </div>
-                ))}
-            </Masonry>
+            <h1><Link to="/"><i class="fa fa-arrow-left" aria-hidden="true"></i></Link></h1>
           </div>
+          <div dangerouslySetInnerHTML={{ __html: galleryMd.html }} />
+          <Masonry
+            breakpointCols={2}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column"
+          >
+            {images &&
+              images.map(({ node }, i) => (
+                <div key={i}>
+                  <a
+                    className="image fit thumb"
+                    onClick={e => toggleLightbox(i)}
+                  >
+                    <Img fluid={node.childImageSharp.fluid} />
+                  </a>
+                </div>
+              ))}
+          </Masonry>
         </section>
         <ModalGateway>
           {lightboxIsOpen && (
@@ -75,7 +75,8 @@ export const query = graphql`
         node {
           childImageSharp {
             fluid(maxWidth: 700) {
-              ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluid,
+              originalImg
             }
           }
         }

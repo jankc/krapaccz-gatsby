@@ -83,8 +83,8 @@ a {
       'border-color #{_duration(transition)} ease-in-out'
     )
   );
-  border-bottom: dotted 1px;
-  color: _palette(accent1, bg);
+  // border-bottom: dotted 1px;
+  // color: _palette(accent1, bg);
   text-decoration: none;
 
   &:hover {
@@ -522,8 +522,8 @@ input[type='radio'] {
       );
       border-radius: _size(border-radius);
       // border: solid 3px rgba(255, 255, 255, 0.2);
-      background-color: #fff;
-      color: #000;
+      background-color: #0f0f0f;
+      color: #fff;
       content: '\f06e';
       // content: 'View';
       display: inline-block;
@@ -966,7 +966,7 @@ input[type='button'],
   // background-color: _palette(accent2, bg);
   background-color: #000;
   background-attachment: scroll, fixed;
-  background-image: url('images/overlay.png'), url('../images/bg.jpg');
+  background-image: url('images/overlay.png'), url('../images/pampelisky.jpeg');
   background-position: left top, -200px top;
   background-repeat: repeat, no-repeat;
   background-size: auto, auto 100%;
@@ -987,7 +987,10 @@ input[type='button'],
   > .inner {
     @include vendor('flex-grow', '1');
     margin: 0 0 ($size-header-pad * 0.5) 0;
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
 
   strong,
   b {
@@ -1072,7 +1075,15 @@ input[type='button'],
       margin-top: 0;
       padding-top: 0;
     }
+
+    > .heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
   }
+
+
 }
 
 /* Poptrox */

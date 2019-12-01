@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 
 import { graphql } from 'gatsby';
 
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 // import Lightbox from 'react-images'
 import Galleries from '../components/Galleries';
 
