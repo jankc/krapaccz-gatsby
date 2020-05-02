@@ -1,3 +1,5 @@
 {
-  "netlify.site_id": "e1ac1c61-39e0-4c84-ab67-f0b626b56c5b"
+  "netlify.site_id": "e1ac1c61-39e0-4c84-ab67-f0b626b56c5b",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true
 }
