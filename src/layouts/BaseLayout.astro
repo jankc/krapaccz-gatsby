@@ -1,0 +1,30 @@
+---
+import '../assets/scss/main.scss';
+import Header from '../components/Header.astro';
+import favicon from '../assets/images/website-icon.png';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Jan Krapac Photography',
+  description = 'Selected portfolios',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href={favicon} />
+  </head>
+  <body>
+    <Header />
+    <slot />
+  </body>
+</html>

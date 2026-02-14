@@ -3,41 +3,29 @@
   "description": "Jan Krapac photography",
   "version": "1.0.0",
   "author": "Jan Krapac",
-  "dependencies": {
-    "gatsby": "^2.15.14",
-    "gatsby-image": "^2.2.33",
-    "gatsby-plugin-manifest": "^2.2.16",
-    "gatsby-plugin-offline": "^3.0.6",
-    "gatsby-plugin-react-helmet": "^3.1.7",
-    "gatsby-plugin-sass": "^2.1.14",
-    "gatsby-plugin-sharp": "^2.3.2",
-    "gatsby-remark-external-links": "0.0.4",
-    "gatsby-source-filesystem": "^2.1.38",
-    "gatsby-transformer-remark": "^2.6.37",
-    "gatsby-transformer-sharp": "^2.3.5",
-    "node-sass": "^4.12.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-helmet": "^5.2.1",
-    "react-images": "^1.0.0",
-    "react-masonry-css": "^1.0.14"
-  },
-  "keywords": [
-    "gatsby"
-  ],
   "license": "MIT",
+  "keywords": [
+    "astro"
+  ],
   "scripts": {
-    "build": "gatsby build",
-    "dev": "gatsby develop --open",
-    "format": "prettier --write '**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "format": "prettier --write '**/*.{astro,js,ts,md,scss}'"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.4.0",
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^5.13.5",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "sass": "^1.93.2",
+    "yet-another-react-lightbox": "^3.25.0"
   },
   "devDependencies": {
-    "gatsby-plugin-google-analytics": "^2.3.0",
-    "prettier": "^1.18.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.2"
   }
 }

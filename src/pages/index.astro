@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSortedGalleries } from '../lib/galleries';
+
+const galleries = await getSortedGalleries();
+---
+
+<BaseLayout>
+  <div id="main">
+    <section id="one">
+      <div class="row">
+        {
+          galleries.map(gallery => (
+            <article class="6u 12u$(xsmall) work-item">
+              <a class="image fit thumb" href={`/${gallery.slug}/`}>
+                <img src={gallery.featuredPhotoSrc} alt={gallery.title} loading="lazy" />
+              </a>
+              <h2>{gallery.title}</h2>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</BaseLayout>

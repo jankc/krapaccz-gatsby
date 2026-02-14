@@ -1,0 +1,44 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GalleryLightbox from '../components/GalleryLightbox';
+import { getGalleryBySlug, getSortedGalleries } from '../lib/galleries';
+
+export async function getStaticPaths() {
+  const galleries = await getSortedGalleries();
+
+  return galleries.map(gallery => ({
+    params: { slug: gallery.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  throw new Error('Missing gallery slug.');
+}
+
+const gallery = await getGalleryBySlug(slug);
+
+if (!gallery) {
+  throw new Error(`Unknown gallery slug: ${slug}`);
+}
+
+const { Content } = await render(gallery.entry);
+---
+
+<BaseLayout title={`${gallery.title} | Jan Krapac Photography`}>
+  <div id="main">
+    <section id="one">
+      <h1>
+        <a href="/"><i class="back fa fa-long-arrow-left" aria-hidden="true"></i></a>
+        <span>{gallery.title}</span>
+      </h1>
+      <Content />
+      <GalleryLightbox client:load images={gallery.images} title={gallery.title} />
+      <h1>
+        <a href="/"><i class="back fa fa-long-arrow-left" aria-hidden="true"></i></a>
+      </h1>
+    </section>
+  </div>
+</BaseLayout>
