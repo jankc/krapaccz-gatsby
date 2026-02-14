@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 // Misc.
 $misc: (
   z-index-base: 10000,
@@ -18,7 +20,14 @@ $size: (
 // Font.
 $font: (
   family: (
-    'Source Sans Pro',
+    'Manrope',
+    'Helvetica Neue',
+    Helvetica,
+    sans-serif,
+  ),
+  family-heading: (
+    'Syne',
+    'Helvetica Neue',
     Helvetica,
     sans-serif,
   ),
@@ -27,12 +36,13 @@ $font: (
     monospace,
   ),
   weight: 400,
-  weight-bold: 600,
+  weight-bold: 700,
+  weight-heading: 800,
 );
 
 // Palette.
 $palette: (
-  bg: #0f0f0f,
+  bg: #1a1a1a,
   fg: #a2a2a2,
   fg-bold: #787878,
   fg-light: #b2b2b2,
@@ -42,9 +52,9 @@ $palette: (
   border2-bg: #e7e7e7,
   accent1: (
     bg: #49bf9d,
-    fg: mix(#49bf9d, #ffffff, 25%),
+    fg: color.mix(#49bf9d, #ffffff, 25%),
     fg-bold: #ffffff,
-    fg-light: mix(#49bf9d, #ffffff, 40%),
+    fg-light: color.mix(#49bf9d, #ffffff, 40%),
     border: rgba(255, 255, 255, 0.25),
     border-bg: rgba(255, 255, 255, 0.075),
     border2: rgba(255, 255, 255, 0.5),

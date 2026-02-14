@@ -1,0 +1,97 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import GalleryLightbox from '../components/GalleryLightbox';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getGalleryBySlug, getSortedGalleries } from '../lib/galleries';
+
+export async function getStaticPaths() {
+  const galleries = await getSortedGalleries();
+
+  return galleries.map(gallery => ({
+    params: { slug: gallery.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  throw new Error('Missing gallery slug.');
+}
+
+const gallery = await getGalleryBySlug(slug);
+
+if (!gallery) {
+  throw new Error(`Unknown gallery slug: ${slug}`);
+}
+
+const { Content } = await render(gallery.entry);
+
+const imageColumns = gallery.images.reduce(
+  (columns, image, index) => {
+    columns[index % 2].push({ image, index });
+    return columns;
+  },
+  [[], []] as Array<Array<{ image: (typeof gallery.images)[number]; index: number }>>
+);
+
+const galleryImageSources = gallery.images.map(image => image.src);
+---
+
+<BaseLayout
+  title={`${gallery.title} | Jan Krapac Photography`}
+  description={gallery.description}
+  image={gallery.featuredPhotoSrc}
+>
+  <div id="main">
+    <section id="one">
+      <h1>
+        <a href="/"><i class="back fa fa-long-arrow-left" aria-hidden="true"></i></a>
+        <span>{gallery.title}</span>
+      </h1>
+      <Content />
+
+      <div class="my-masonry-grid" id="gallery-grid">
+        {
+          imageColumns.map((column, columnIndex) => (
+            <div class="my-masonry-grid_column" data-column={columnIndex}>
+              {
+                column.map(item => (
+                  <div>
+                    <a
+                      class="image fit thumb"
+                      href={item.image.src}
+                      data-gallery-index={item.index}
+                      aria-label={`Open ${gallery.title} photo ${item.index + 1}`}
+                    >
+                      <Image
+                        src={item.image}
+                        alt={`${gallery.title} ${item.index + 1}`}
+                        widths={[520, 760, 1080]}
+                        sizes="(max-width: 736px) calc(100vw - 3rem), (max-width: 980px) calc((100vw - 8rem) / 2), 520px"
+                        formats={['avif', 'webp', 'jpeg']}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </a>
+                  </div>
+                ))
+              }
+            </div>
+          ))
+        }
+      </div>
+
+      <GalleryLightbox
+        client:idle
+        images={galleryImageSources}
+        title={gallery.title}
+        triggerSelector="#gallery-grid [data-gallery-index]"
+      />
+
+      <h1>
+        <a href="/"><i class="back fa fa-long-arrow-left" aria-hidden="true"></i></a>
+      </h1>
+    </section>
+  </div>
+</BaseLayout>

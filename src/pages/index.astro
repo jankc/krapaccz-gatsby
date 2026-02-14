@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSortedGalleries } from '../lib/galleries';
+
+const galleries = await getSortedGalleries();
+const homeDescription = 'Photography portfolios and portrait galleries by Jan Krapáč.';
+---
+
+<BaseLayout
+  title="Jan Krapac Photography"
+  description={homeDescription}
+  image={galleries[0]?.featuredPhotoSrc}
+>
+  <div id="main">
+    <section id="one">
+      <div class="row">
+        {
+          galleries.map(gallery => (
+            <article class="6u 12u$(xsmall) work-item">
+              <a class="image fit thumb" href={`/${gallery.slug}/`} aria-label={`Open ${gallery.title} gallery`}>
+                <Image
+                  src={gallery.featuredPhoto}
+                  alt={gallery.title}
+                  widths={[420, 620, 860]}
+                  sizes="(max-width: 480px) calc(100vw - 3rem), (max-width: 980px) calc(50vw - 4rem), 420px"
+                  formats={['avif', 'webp', 'jpeg']}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+              <h2>{gallery.title}</h2>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</BaseLayout>
