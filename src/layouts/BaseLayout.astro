@@ -1,27 +1,60 @@
 ---
 import '../assets/scss/main.scss';
+import '../assets/css/font-awesome.min.css';
 import Header from '../components/Header.astro';
 import favicon from '../assets/images/website-icon.png';
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  lang?: string;
+  noindex?: boolean;
 }
 
 const {
   title = 'Jan Krapac Photography',
-  description = 'Selected portfolios',
+  description = 'Selected portfolios by Jan Krapáč.',
+  image,
+  lang = 'cs',
+  noindex = false,
 } = Astro.props;
+
+const siteUrl = Astro.site;
+const canonicalUrl = siteUrl
+  ? new URL(Astro.url.pathname, siteUrl).toString()
+  : Astro.url.toString();
+const ogImageUrl = image
+  ? new URL(image, siteUrl ?? Astro.url).toString()
+  : undefined;
+const twitterCardType = ogImageUrl ? 'summary_large_image' : 'summary';
+const ogLocale = lang === 'cs' ? 'cs_CZ' : 'en_US';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" href={favicon} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href={favicon.src} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Jan Krapac Photography" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+
+    <meta name="twitter:card" content={twitterCardType} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
   </head>
   <body>
     <Header />

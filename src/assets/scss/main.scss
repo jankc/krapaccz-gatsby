@@ -1,16 +1,15 @@
-@import 'libs/vars';
-@import 'libs/functions';
-@import 'libs/mixins';
-@import '../css/font-awesome.min.css';
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic');
+@use 'sass:color';
+@use 'libs/vars' as *;
+@use 'libs/skel' as *;
+@use 'libs/functions' as *;
+@use 'libs/mixins' as *;
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
 
 /*
 	Strata by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
-
-@import 'libs/skel';
 
 @include skel-breakpoints(
   (
@@ -52,7 +51,7 @@ $size-header-pad: 2em;
 /* Basic */
 
 body {
-  background: _palette(bg);
+  background: palette(bg);
 
   &.is-loading {
     *,
@@ -68,10 +67,10 @@ body,
 input,
 select,
 textarea {
-  color: _palette(fg);
-  font-family: _font(family);
+  color: palette(fg);
+  font-family: font(family);
   font-size: 16pt;
-  font-weight: _font(weight);
+  font-weight: font(weight);
   line-height: 1.75em;
 }
 
@@ -79,25 +78,25 @@ a {
   @include vendor(
     'transition',
     (
-      'color #{_duration(transition)} ease-in-out',
-      'border-color #{_duration(transition)} ease-in-out'
+      'color #{duration(transition)} ease-in-out',
+      'border-color #{duration(transition)} ease-in-out'
     )
   );
   // border-bottom: dotted 1px;
-  // color: _palette(accent1, bg);
+  // color: palette(accent1, bg);
   text-decoration: none;
 
   &:hover {
     border-bottom-color: transparent;
-    color: _palette(accent1, bg) !important;
+    color: palette(accent1, bg) !important;
     text-decoration: none;
   }
 }
 
 strong,
 b {
-  color: _palette(fg-bold);
-  font-weight: _font(weight-bold);
+  color: palette(fg-bold);
+  font-weight: font(weight-bold);
 }
 
 em,
@@ -106,7 +105,7 @@ i {
 }
 
 p {
-  margin: 0 0 _size(element-margin) 0;
+  margin: 0 0 size(element-margin) 0;
 }
 
 h1,
@@ -115,10 +114,11 @@ h3,
 h4,
 h5,
 h6 {
-  color: _palette(fg-bold);
-  font-weight: _font(weight-bold);
+  color: palette(fg-bold);
+  font-family: font(family-heading);
+  font-weight: font(weight-bold);
   line-height: 1em;
-  margin: 0 0 (_size(element-margin) * 0.5) 0;
+  margin: 0 0 (size(element-margin) * 0.5) 0;
 
   a {
     color: inherit;
@@ -128,11 +128,13 @@ h6 {
 
 h1 {
   font-size: 2em;
+  font-weight: font(weight-heading);
   line-height: 1.5em;
 }
 
 h2 {
   font-size: 1.5em;
+  font-weight: font(weight-heading);
   line-height: 1.5em;
 }
 
@@ -170,28 +172,28 @@ sup {
 
 hr {
   border: 0;
-  border-bottom: solid 2px _palette(border);
+  border-bottom: solid 2px palette(border);
 
   // This is the *only* instance where we need to rely on margin collapse.
-  margin: _size(element-margin) 0;
+  margin: size(element-margin) 0;
 
   &.major {
-    margin: (_size(element-margin) * 1.5) 0;
+    margin: (size(element-margin) * 1.5) 0;
   }
 }
 
 blockquote {
-  border-left: solid 6px _palette(border);
+  border-left: solid 6px palette(border);
   font-style: italic;
-  margin: 0 0 _size(element-margin) 0;
+  margin: 0 0 size(element-margin) 0;
   padding: 0.5em 0 0.5em 1.5em;
 }
 
 code {
-  background: _palette(border-bg);
-  border-radius: _size(border-radius);
-  border: solid 2px _palette(border);
-  font-family: _font(family-fixed);
+  background: palette(border-bg);
+  border-radius: size(border-radius);
+  border: solid 2px palette(border);
+  font-family: font(family-fixed);
   font-size: 0.9em;
   margin: 0 0.25em;
   padding: 0.25em 0.65em;
@@ -199,9 +201,9 @@ code {
 
 pre {
   -webkit-overflow-scrolling: touch;
-  font-family: _font(family-fixed);
+  font-family: font(family-fixed);
   font-size: 0.9em;
-  margin: 0 0 _size(element-margin) 0;
+  margin: 0 0 size(element-margin) 0;
 
   code {
     display: block;
@@ -234,20 +236,20 @@ article {
 
 header {
   p {
-    color: _palette(fg-light);
+    color: palette(fg-light);
     position: relative;
-    margin: 0 0 (_size(element-margin) * 0.75) 0;
+    margin: 0 0 (size(element-margin) * 0.75) 0;
   }
 
   h2 + p {
     font-size: 1.25em;
-    margin-top: (_size(element-margin) * -0.5);
+    margin-top: (size(element-margin) * -0.5);
     line-height: 1.5em;
   }
 
   h3 + p {
     font-size: 1.1em;
-    margin-top: (_size(element-margin) * -0.4);
+    margin-top: (size(element-margin) * -0.4);
     line-height: 1.5em;
   }
 
@@ -255,7 +257,7 @@ header {
   h5 + p,
   h6 + p {
     font-size: 0.9em;
-    margin-top: (_size(element-margin) * -0.3);
+    margin-top: (size(element-margin) * -0.3);
     line-height: 1.5em;
   }
 
@@ -269,15 +271,15 @@ header {
 /* Form */
 
 form {
-  margin: 0 0 _size(element-margin) 0;
+  margin: 0 0 size(element-margin) 0;
 }
 
 label {
-  color: _palette(fg-bold);
+  color: palette(fg-bold);
   display: block;
   font-size: 0.9em;
-  font-weight: _font(weight-bold);
-  margin: 0 0 (_size(element-margin) * 0.5) 0;
+  font-weight: font(weight-bold);
+  margin: 0 0 (size(element-margin) * 0.5) 0;
 }
 
 input[type='text'],
@@ -286,8 +288,8 @@ input[type='email'],
 select,
 textarea {
   @include vendor('appearance', 'none');
-  background: _palette(border-bg);
-  border-radius: _size(border-radius);
+  background: palette(border-bg);
+  border-radius: size(border-radius);
   border: solid 2px transparent;
   color: inherit;
   display: block;
@@ -301,7 +303,7 @@ textarea {
   }
 
   &:focus {
-    border-color: _palette(accent1, bg);
+    border-color: palette(accent1, bg);
   }
 }
 
@@ -311,17 +313,17 @@ textarea {
   position: relative;
 
   &:before {
-    color: _palette(border2);
+    color: palette(border2);
     content: '\f078';
     display: block;
-    height: _size(element-height);
-    line-height: _size(element-height);
+    height: size(element-height);
+    line-height: size(element-height);
     pointer-events: none;
     position: absolute;
     right: 0;
     text-align: center;
     top: 0;
-    width: _size(element-height);
+    width: size(element-height);
   }
 
   select::-ms-expand {
@@ -333,7 +335,7 @@ input[type='text'],
 input[type='password'],
 input[type='email'],
 select {
-  height: _size(element-height);
+  height: size(element-height);
 }
 
 textarea {
@@ -352,43 +354,43 @@ input[type='radio'] {
 
   & + label {
     @include icon;
-    color: _palette(fg);
+    color: palette(fg);
     cursor: pointer;
     display: inline-block;
     font-size: 1em;
-    font-weight: _font(weight);
-    padding-left: (_size(element-height) * 0.6) + 0.75em;
+    font-weight: font(weight);
+    padding-left: (size(element-height) * 0.6) + 0.75em;
     padding-right: 0.75em;
     position: relative;
 
     &:before {
-      background: _palette(border-bg);
-      border-radius: _size(border-radius);
+      background: palette(border-bg);
+      border-radius: size(border-radius);
       border: solid 2px transparent;
       content: '';
       display: inline-block;
-      height: (_size(element-height) * 0.6);
+      height: (size(element-height) * 0.6);
       left: 0;
-      line-height: (_size(element-height) * 0.575);
+      line-height: (size(element-height) * 0.575);
       position: absolute;
       text-align: center;
       top: 0;
-      width: (_size(element-height) * 0.6);
+      width: (size(element-height) * 0.6);
     }
   }
 
   &:checked + label {
     &:before {
-      background: _palette(fg-bold);
-      border-color: _palette(fg-bold);
-      color: _palette(bg);
+      background: palette(fg-bold);
+      border-color: palette(fg-bold);
+      color: palette(bg);
       content: '\f00c';
     }
   }
 
   &:focus + label {
     &:before {
-      border-color: _palette(accent1, bg);
+      border-color: palette(accent1, bg);
     }
   }
 }
@@ -396,7 +398,7 @@ input[type='radio'] {
 input[type='checkbox'] {
   & + label {
     &:before {
-      border-radius: _size(border-radius);
+      border-radius: size(border-radius);
     }
   }
 }
@@ -410,36 +412,36 @@ input[type='radio'] {
 }
 
 ::-webkit-input-placeholder {
-  color: _palette(fg-light) !important;
+  color: palette(fg-light) !important;
   opacity: 1;
 }
 
 :-moz-placeholder {
-  color: _palette(fg-light) !important;
+  color: palette(fg-light) !important;
   opacity: 1;
 }
 
 ::-moz-placeholder {
-  color: _palette(fg-light) !important;
+  color: palette(fg-light) !important;
   opacity: 1;
 }
 
 :-ms-input-placeholder {
-  color: _palette(fg-light) !important;
+  color: palette(fg-light) !important;
   opacity: 1;
 }
 
 .formerize-placeholder {
-  color: _palette(fg-light) !important;
+  color: palette(fg-light) !important;
   opacity: 1;
 }
 
 /* Box */
 
 .box {
-  border-radius: _size(border-radius);
-  border: solid 2px _palette(border);
-  margin-bottom: _size(element-margin);
+  border-radius: size(border-radius);
+  border: solid 2px palette(border);
+  margin-bottom: size(element-margin);
   padding: 1.5em;
 
   > :last-child,
@@ -490,7 +492,7 @@ input[type='radio'] {
 /* Image */
 
 .image {
-  border-radius: _size(border-radius);
+  border-radius: size(border-radius);
   border: 0;
   display: inline-block;
   position: relative;
@@ -498,10 +500,10 @@ input[type='radio'] {
   &:before {
     @include vendor(
       'transition',
-      'opacity #{_duration(transition)} ease-in-out'
+      'opacity #{duration(transition)} ease-in-out'
     );
     background: url('images/overlay.png');
-    border-radius: _size(border-radius);
+    border-radius: size(border-radius);
     content: '';
     display: block;
     height: 100%;
@@ -517,27 +519,36 @@ input[type='radio'] {
 
     &:before {
       opacity: 0;
+      @include vendor(
+        'transition',
+        (
+          'opacity #{duration(transition)} ease-in-out',
+          'box-shadow #{duration(transition)} ease-in-out'
+        )
+      );
     }
 
     &:after {
       @include vendor(
         'transition',
-        'opacity #{_duration(transition)} ease-in-out'
+        (
+          'opacity #{duration(transition)} ease-in-out',
+          'transform #{duration(transition)} ease-in-out'
+        )
       );
-      border-radius: _size(border-radius);
-      // border: solid 3px rgba(255, 255, 255, 0.2);
-      background-color: #0f0f0f;
+      border-radius: size(border-radius);
+      background-color: rgba(15, 15, 15, 0.7);
+      border: solid 1px rgba(255, 255, 255, 0.75);
+      box-shadow: 0 0 0 0 rgba(73, 191, 157, 0.35);
       color: #fff;
       content: '\f06e';
-      // content: 'View';
       display: inline-block;
       font-family: 'FontAwesome';
       font-size: 1.3em;
-      font-weight: _font(weight-bold);
+      font-weight: font(weight-bold);
       left: 50%;
       line-height: 2.25em;
-      // margin: -1.5em 0 0 -3em;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%) scale(0.96);
       opacity: 0;
       padding: 0 1.5em;
       position: absolute;
@@ -550,18 +561,47 @@ input[type='radio'] {
     &:hover {
       &:after {
         opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: 0 0 0 4px rgba(73, 191, 157, 0.15);
       }
 
       &:before {
-        background: url('images/overlay.png');
-        opacity: 0.2;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.04) 0%,
+          rgba(0, 0, 0, 0.2) 100%
+        );
+        opacity: 1;
+        box-shadow: inset 0 0 0 1px rgba(73, 191, 157, 0.35);
       }
+
+      img {
+        transform: scale(1.015);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid palette(accent1, bg);
+      outline-offset: 4px;
+
+      &:before {
+        opacity: 1;
+        box-shadow: inset 0 0 0 1px rgba(73, 191, 157, 0.5);
+      }
+    }
+
+    img {
+      @include vendor(
+        'transition',
+        'transform #{duration(transition)} ease-in-out'
+      );
     }
   }
 
   img {
-    border-radius: _size(border-radius);
+    border-radius: size(border-radius);
     display: block;
+    height: auto;
   }
 
   &.left {
@@ -587,7 +627,7 @@ input[type='radio'] {
 
   &.fit {
     display: block;
-    margin: 0 0 _size(element-margin) 0;
+    margin: 0 0 size(element-margin) 0;
     width: 100%;
 
     img {
@@ -613,7 +653,7 @@ input[type='radio'] {
 
 ol {
   list-style: decimal;
-  margin: 0 0 _size(element-margin) 0;
+  margin: 0 0 size(element-margin) 0;
   padding-left: 1.25em;
 
   li {
@@ -623,7 +663,7 @@ ol {
 
 ul {
   list-style: disc;
-  margin: 0 0 _size(element-margin) 0;
+  margin: 0 0 size(element-margin) 0;
   padding-left: 1em;
 
   li {
@@ -635,7 +675,7 @@ ul {
     padding-left: 0;
 
     li {
-      border-top: solid 2px _palette(border);
+      border-top: solid 2px palette(border);
       padding: 0.5em 0;
 
       &:first-child {
@@ -673,7 +713,7 @@ ul {
 
     li {
       display: inline-block;
-      padding: 0 (_size(element-margin) * 0.5) 0 0;
+      padding: 0 (size(element-margin) * 0.5) 0 0;
       vertical-align: middle;
 
       &:last-child {
@@ -683,14 +723,14 @@ ul {
 
     &.small {
       li {
-        padding: 0 (_size(element-margin) * 0.25) 0 0;
+        padding: 0 (size(element-margin) * 0.25) 0 0;
       }
     }
 
     &.vertical {
       li {
         display: block;
-        padding: (_size(element-margin) * 0.5) 0 0 0;
+        padding: (size(element-margin) * 0.5) 0 0 0;
 
         &:first-child {
           padding-top: 0;
@@ -703,7 +743,7 @@ ul {
 
       &.small {
         li {
-          padding: (_size(element-margin) * 0.25) 0 0 0;
+          padding: (size(element-margin) * 0.25) 0 0 0;
 
           &:first-child {
             padding-top: 0;
@@ -714,14 +754,14 @@ ul {
 
     &.fit {
       display: table;
-      margin-left: (_size(element-margin) * -0.5);
+      margin-left: (size(element-margin) * -0.5);
       padding: 0;
       table-layout: fixed;
-      width: calc(100% + #{(_size(element-margin) * 0.5)});
+      width: calc(100% + #{(size(element-margin) * 0.5)});
 
       li {
         display: table-cell;
-        padding: 0 0 0 (_size(element-margin) * 0.5);
+        padding: 0 0 0 (size(element-margin) * 0.5);
 
         > * {
           margin-bottom: 0;
@@ -729,11 +769,11 @@ ul {
       }
 
       &.small {
-        margin-left: (_size(element-margin) * -0.25);
-        width: calc(100% + #{(_size(element-margin) * 0.25)});
+        margin-left: (size(element-margin) * -0.25);
+        width: calc(100% + #{(size(element-margin) * 0.25)});
 
         li {
-          padding: 0 0 0 (_size(element-margin) * 0.25);
+          padding: 0 0 0 (size(element-margin) * 0.25);
         }
       }
     }
@@ -758,7 +798,7 @@ ul {
       }
 
       h3 {
-        color: _palette(fg-light);
+        color: palette(fg-light);
         left: 0;
         position: absolute;
         text-align: center;
@@ -770,7 +810,7 @@ ul {
 }
 
 dl {
-  margin: 0 0 _size(element-margin) 0;
+  margin: 0 0 size(element-margin) 0;
 }
 
 /* Table */
@@ -781,17 +821,17 @@ dl {
 }
 
 table {
-  margin: 0 0 _size(element-margin) 0;
+  margin: 0 0 size(element-margin) 0;
   width: 100%;
 
   tbody {
     tr {
-      border: solid 1px _palette(border);
+      border: solid 1px palette(border);
       border-left: 0;
       border-right: 0;
 
       &:nth-child(2n + 1) {
-        background-color: _palette(border-bg);
+        background-color: palette(border-bg);
       }
     }
   }
@@ -801,19 +841,19 @@ table {
   }
 
   th {
-    color: _palette(fg-bold);
+    color: palette(fg-bold);
     font-size: 0.9em;
-    font-weight: _font(weight-bold);
+    font-weight: font(weight-bold);
     padding: 0 0.75em 0.75em 0.75em;
     text-align: left;
   }
 
   thead {
-    border-bottom: solid 2px _palette(border);
+    border-bottom: solid 2px palette(border);
   }
 
   tfoot {
-    border-top: solid 2px _palette(border);
+    border-top: solid 2px palette(border);
   }
 
   &.alt {
@@ -822,7 +862,7 @@ table {
     tbody {
       tr {
         td {
-          border: solid 2px _palette(border);
+          border: solid 2px palette(border);
           border-left-width: 0;
           border-top-width: 0;
 
@@ -859,18 +899,18 @@ input[type='button'],
   @include vendor(
     'transition',
     (
-      'background-color #{_duration(transition)} ease-in-out',
-      'color #{_duration(transition)} ease-in-out',
-      'border-color #{_duration(transition)} ease-in-out'
+      'background-color #{duration(transition)} ease-in-out',
+      'color #{duration(transition)} ease-in-out',
+      'border-color #{duration(transition)} ease-in-out'
     )
   );
   background-color: transparent;
-  border-radius: _size(border-radius);
-  border: solid 3px _palette(border);
-  color: _palette(fg-bold) !important;
+  border-radius: size(border-radius);
+  border: solid 3px palette(border);
+  color: palette(fg-bold) !important;
   cursor: pointer;
   display: inline-block;
-  font-weight: _font(weight-bold);
+  font-weight: font(weight-bold);
   height: 3.15em;
   height: calc(2.75em + 6px);
   line-height: 2.75em;
@@ -881,14 +921,14 @@ input[type='button'],
   white-space: nowrap;
 
   &:hover {
-    border-color: _palette(accent1, bg);
-    color: _palette(accent1, bg) !important;
+    border-color: palette(accent1, bg);
+    color: palette(accent1, bg) !important;
   }
 
   &:active {
-    background-color: transparentize(_palette(accent1, bg), 0.9);
-    border-color: _palette(accent1, bg);
-    color: _palette(accent1, bg) !important;
+    background-color: color.adjust(palette(accent1, bg), $alpha: -0.9);
+    border-color: palette(accent1, bg);
+    color: palette(accent1, bg) !important;
   }
 
   &.icon {
@@ -901,7 +941,7 @@ input[type='button'],
 
   &.fit {
     display: block;
-    margin: 0 0 (_size(element-margin) * 0.5) 0;
+    margin: 0 0 (size(element-margin) * 0.5) 0;
     min-width: 0;
     width: 100%;
   }
@@ -915,26 +955,26 @@ input[type='button'],
   }
 
   &.special {
-    background-color: _palette(accent1, bg);
-    border-color: _palette(accent1, bg);
-    color: _palette(accent1, fg-bold) !important;
+    background-color: palette(accent1, bg);
+    border-color: palette(accent1, bg);
+    color: palette(accent1, fg-bold) !important;
 
     &:hover {
-      background-color: lighten(_palette(accent1, bg), 5);
-      border-color: lighten(_palette(accent1, bg), 5);
+      background-color: color.adjust(palette(accent1, bg), $lightness: 5%);
+      border-color: color.adjust(palette(accent1, bg), $lightness: 5%);
     }
 
     &:active {
-      background-color: darken(_palette(accent1, bg), 5);
-      border-color: darken(_palette(accent1, bg), 5);
+      background-color: color.adjust(palette(accent1, bg), $lightness: -5%);
+      border-color: color.adjust(palette(accent1, bg), $lightness: -5%);
     }
   }
 
   &.disabled,
   &:disabled {
-    background-color: _palette(border2-bg) !important;
-    border-color: _palette(border2-bg) !important;
-    color: _palette(fg-light) !important;
+    background-color: palette(border2-bg) !important;
+    border-color: palette(border2-bg) !important;
+    color: palette(fg-light) !important;
     cursor: default;
   }
 }
@@ -942,10 +982,11 @@ input[type='button'],
 /* Work Item */
 
 .work-item {
-  margin: 0 0 _size(element-margin) 0;
+  min-width: 0;
+  margin: 0 0 size(element-margin) 0;
 
   .image {
-    margin: 0 0 (_size(element-margin) * 0.75) 0;
+    margin: 0 0 (size(element-margin) * 0.75) 0;
   }
 
   .image.thumb {
@@ -960,13 +1001,33 @@ input[type='button'],
     }
   }
 
+  h2,
+  h3 {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: manual;
+    margin: 0 0 (size(element-margin) * 0.25) 0;
+  }
+
+  h2 {
+    font-family: font(family);
+    font-size: 1.2em;
+    font-weight: font(weight-bold);
+    line-height: 1.35em;
+  }
+
   h3 {
     font-size: 1em;
-    margin: 0 0 (_size(element-margin) * 0.25) 0;
+    line-height: 1.4em;
   }
 
   p {
     font-size: 0.8em;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: normal;
+    hyphens: manual;
     line-height: 1.5em;
     margin: 0;
   }
@@ -979,14 +1040,18 @@ input[type='button'],
   @include vendor('flex-direction', 'column');
   @include vendor('align-items', 'flex-end');
   @include vendor('justify-content', 'space-between');
-  // background-color: _palette(accent2, bg);
-  background-color: #000;
+  // background-color: palette(accent2, bg);
+  background-color: palette(bg);
   background-attachment: scroll, fixed;
   background-image: url('images/overlay.png'), url('../images/pampelisky.jpeg');
-  background-position: left top, left top;
+  background-position:
+    left top,
+    left top;
   background-repeat: repeat, no-repeat;
-  background-size: auto, auto 100%;
-  color: _palette(accent2, fg);
+  background-size:
+    auto,
+    auto 100%;
+  color: palette(accent2, fg);
   height: 100%;
   left: 0;
   padding: ($size-header-pad * 2) $size-header-pad;
@@ -1006,11 +1071,11 @@ input[type='button'],
     // display: flex;
     // justify-content: center;
     // align-items: center;
-    }
+  }
 
   strong,
   b {
-    color: _palette(accent2, fg-bold);
+    color: palette(accent2, fg-bold);
   }
 
   h2,
@@ -1018,18 +1083,18 @@ input[type='button'],
   h4,
   h5,
   h6 {
-    color: _palette(accent2, fg-bold);
+    color: palette(accent2, fg-bold);
   }
 
   h1 {
-    color: _palette(accent2, fg);
+    color: palette(accent2, fg);
     font-size: 3em;
     line-height: 1.75em;
     margin: 0;
   }
 
   .image.avatar {
-    margin: 0 0 (_size(element-margin) * 0.5) 0;
+    margin: 0 0 (size(element-margin) * 0.5) 0;
     width: 6.25em;
   }
 }
@@ -1038,22 +1103,22 @@ input[type='button'],
 
 #footer {
   .icons {
-    margin: (_size(element-margin) * 0.5) 0 0 0;
+    margin: (size(element-margin) * 0.5) 0 0 0;
 
     a {
-      color: _palette(accent2, fg-light);
+      color: palette(accent2, fg-light);
     }
   }
 
   .copyright {
-    color: _palette(accent2, fg-light);
+    color: palette(accent2, fg-light);
     font-size: 0.8em;
     list-style: none;
-    margin: (_size(element-margin) * 0.5) 0 0 0;
+    margin: (size(element-margin) * 0.5) 0 0 0;
     padding: 0;
 
     li {
-      border-left: solid 1px _palette(accent2, border);
+      border-left: solid 1px palette(accent2, border);
       display: inline-block;
       line-height: 1em;
       margin-left: 0.75em;
@@ -1082,7 +1147,7 @@ input[type='button'],
   width: calc(100% - #{$size-header-width});
 
   > section {
-    border-top: solid 2px _palette(border);
+    border-top: solid 2px palette(border);
     margin: $size-header-pad 0 0 0;
     padding: $size-header-pad 0 0 0;
 
@@ -1097,16 +1162,32 @@ input[type='button'],
       justify-content: space-between;
       align-items: flex-start;
 
+      > span {
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-break: normal;
+        hyphens: manual;
+      }
+
       .back {
         // font-size: .5em !important;
       }
     }
   }
-
-
 }
 
 /* Poptrox */
+
+/* Yet Another React Lightbox */
+
+:root {
+  --yarl__color_backdrop: #{color.change(palette(bg), $alpha: 0.94)};
+}
+
+.yarl__container {
+  background-color: color.change(palette(bg), $alpha: 0.94);
+}
 
 @include keyframes('spin') {
   0% {
@@ -1121,7 +1202,7 @@ input[type='button'],
   @include vendor('box-sizing', 'content-box');
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   background: #fff;
-  border-radius: _size(border-radius);
+  border-radius: size(border-radius);
   box-shadow: 0 0.1em 0.15em 0 rgba(0, 0, 0, 0.15);
   overflow: hidden;
   padding-bottom: 3em;
@@ -1162,7 +1243,7 @@ input[type='button'],
     @include icon;
     @include vendor(
       'transition',
-      'opacity #{_duration(transition)} ease-in-out'
+      'opacity #{duration(transition)} ease-in-out'
     );
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     background: rgba(0, 0, 0, 0.01);
@@ -1208,7 +1289,7 @@ input[type='button'],
     @include icon;
     @include vendor(
       'transition',
-      'opacity #{_duration(transition)} ease-in-out'
+      'opacity #{duration(transition)} ease-in-out'
     );
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
     color: #fff;
@@ -1382,7 +1463,9 @@ body.is-touch {
 
   #header {
     background-attachment: scroll;
-    background-position: left top, left top;
+    background-position:
+      left top,
+      left top;
     background-size: auto, cover;
     left: auto;
     padding: ($size-header-pad * 1.5) $size-header-pad;
@@ -1413,11 +1496,11 @@ body.is-touch {
     width: 100%;
 
     .icons {
-      margin: 0 0 (_size(element-margin) * 0.5) 0;
+      margin: 0 0 (size(element-margin) * 0.5) 0;
     }
 
     .copyright {
-      margin: 0 0 (_size(element-margin) * 0.5) 0;
+      margin: 0 0 (size(element-margin) * 0.5) 0;
 
       li {
         border-left-width: 1px;
@@ -1508,7 +1591,7 @@ body.is-touch {
 
   #main {
     padding: ($size-header-pad * 1.5) $size-header-pad
-      (($size-header-pad * 1.5) - _size(element-margin)) $size-header-pad;
+      (($size-header-pad * 1.5) - size(element-margin)) $size-header-pad;
 
     > section {
       margin: ($size-header-pad * 1.5) 0 0 0;
@@ -1539,11 +1622,11 @@ body.is-touch {
 
   ul {
     &.actions {
-      margin: 0 0 _size(element-margin) 0;
+      margin: 0 0 size(element-margin) 0;
 
       li {
         display: block;
-        padding: (_size(element-margin) * 0.5) 0 0 0;
+        padding: (size(element-margin) * 0.5) 0 0 0;
         text-align: center;
         width: 100%;
 
@@ -1565,7 +1648,7 @@ body.is-touch {
 
       &.small {
         li {
-          padding: (_size(element-margin) * 0.25) 0 0 0;
+          padding: (size(element-margin) * 0.25) 0 0 0;
 
           &:first-child {
             padding-top: 0;
